@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <h1> Crear un StudySpace</h1>
+
+    <form method="post" action="{%url 'create'%}">
+        {%csrf_token%}
+        {{form}}
+        <button type="submit">Crear</button>
+    </form>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

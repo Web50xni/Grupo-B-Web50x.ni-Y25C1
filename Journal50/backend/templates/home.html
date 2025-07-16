@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<p>¡Bienvenido al Diario de Aprendiendo con Web50x.ni!</p>
+<h1>StudySpaces</h1>
+
+<ul>
+    {%for studyspace in studyspaces%}
+    <li>
+        <a href="{%url 'studyspace' studyspace%}">{{studyspace}}</a>
+    </li>
+    {%empty%}
+    <li>No has creado ningun StudySpace</li>
+    {%endfor%}
+</ul>
+<a href={%url 'create'%}>Crear nuevo StudySpace</a>
+{% endblock %}
