@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+
+{%block title%}
+Crear studyspace
+{%endblock%}
+
+{%block content%}
+    <h1> Crear un studyspace</h1>
+
+    <form method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-primary" type="submit">Crear</button>
+    </form>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

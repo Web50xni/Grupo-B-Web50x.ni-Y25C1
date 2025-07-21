@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{%block title%}
+Eliminar {{obj_title}}
+{%endblock%}
+
+{% block content %}
+    <h2>Eliminar studyspace: {{obj_title}}</h2>
+    </br>
+    <section class="d-flex align-items-center flex-column">
+        <h3>¿Quieres eliminar este studyspace?</h3>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"> Si, quiero eliminarlo </button>
+
+            <a href={{cancelar}} class="btn">Cancelar</a>
+        </form>
+    </section>
+{% endblock content %}

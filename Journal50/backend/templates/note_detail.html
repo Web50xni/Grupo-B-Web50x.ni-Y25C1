@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+
+{%block title%}
+{{note.title}}
+{%endblock%}
+
+{%block content%}
+<article>
+    <section>
+        <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row mb-2">
+            <h1>{{note.title}}</h1>       
+            <small class="text-secondary">Creado: {{note.created_at}}</small>
+        </div>
+        <p>{{note.content}}</p>
+    </section>
+
+    <section>
+        <pre><code class="language-{{note.code.language}} card p-3 bg-light">{{note.code.source}}</code></pre>
+    </section>
+
+    <section>
+        <h2>Enlaces</h2>
+        <ul class="list-group">
+            {%for link in note.links%}
+                <li class="list-group-item border-0 text-truncate mw-75">
+                    <a class="text-decoration-none" href="{{link}}"><i class="fas fa-link"></i> {{link}}</a>
+                </li>
+            {%empty%}
+                <li>No hay enlaces para este apunte.</li>
+            {%endfor%}
+        </ul>
+    </section>
+</article>
+{%endblock%}

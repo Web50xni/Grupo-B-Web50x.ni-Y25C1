@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{%block title%}
+studyspaces
+{%endblock%}
+
+{%block content%}
+<section class="card border-0">
+    <h2 class="card-header border-0">Studyspaces</h2>
+
+    <ul class="list-group border-0">
+        {%for studyspace in studyspaces%}
+            <li class="list-group-item border-0">
+                <a class="text-decoration-none" href="{%url 'studyspace_detail' studyspace%}"><i class="fas fa-book fa-sm"></i> {{studyspace}}</a>
+            </li>
+        {%empty%}
+            <li class="list-group-item border-0">No has creado ningún studyspace</li>
+        {%endfor%}
+    </ul>
+
+    <a class="card-footer text-decoration-none" href={%url 'studyspace_create'%}><i class="fas fa-plus fa-sm"></i> Crear nuevo studyspace</a>
+</section>
+{%endblock%}

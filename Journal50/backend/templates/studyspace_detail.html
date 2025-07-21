@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+
+{%block title%}
+{{studyspace.title}}
+{%endblock%}
+
+{%block content%}
+    <header>
+        <nav>
+            <a class="btn btn-light" href="{% url 'studyspace_update' title=studyspace.title %}"><i class="fas fa-edit fa-sm"></i> Editar</a> 
+            <a class="btn btn-light" href="{% url 'studyspace_delete' title=studyspace.title %}"><i class="fas fa-trash fa-sm"></i> Eliminar</a> 
+        </nav>
+    </header>
+    
+    <main>
+        <article class="card border-0 mb-2 mt-2 p-2 bg-light">
+            <h1>{{studyspace.title}}</h1>
+            <p>{{studyspace.description}}</p>
+            <p>
+                {%if studyspace.goal%}<strong>Meta: </strong>{%endif%}
+                {{studyspace.goal}}
+            </p>
+        </article>
+
+        <section class="card border-0">
+            <h2 class="card-header border-0">Apuntes</h2>
+            <ul class="list-group">
+                {%for note in notes%}
+                    <li class="list-group-item border-0">
+                        <a class="text-decoration-none" href="{%url 'note_detail' studyspace.title note%}"><i class="fas fa-file fa-sm"></i> {{note}}</a>
+                    </li>
+                {%empty%}
+                    <li class="list-group-item border-0">No has escrito ningún apunte.</li>
+                {%endfor%}
+            </ul>
+            <a class="text-decoration-none card-footer" href=""><i class="fas fa-plus fa-sm"></i> Agregar apunte</a>
+        </section>
+    </main>
+{%endblock%}
