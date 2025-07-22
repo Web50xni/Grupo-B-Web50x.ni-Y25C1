@@ -33,7 +33,7 @@
                     <li class="list-group-item border-0">No has escrito ningún apunte.</li>
                 {%endfor%}
             </ul>
-            <a class="text-decoration-none card-footer" href=""><i class="fas fa-plus fa-sm"></i> Agregar apunte</a>
+            <a class="text-decoration-none card-footer" href="{%url 'note_create' studyspace.title%}"><i class="fas fa-plus fa-sm"></i> Agregar apunte</a>
         </section>
     </main>
 {%endblock%}

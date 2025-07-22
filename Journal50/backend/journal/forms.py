@@ -26,3 +26,18 @@ class StudyspaceForm(forms.Form):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
+
+
+class NoteForm(forms.Form):
+    title = forms.CharField(required=True, label="Título")
+    content = forms.CharField(required=False, label="Contenido", widget=forms.Textarea)
+
+    links = forms.CharField(required=False, label="Enlaces (Cada uno separado por un espacio)", widget=forms.Textarea)
+
+    language = forms.CharField(required=False, label='Languaje')
+    source = forms.CharField(required=False, widget=forms.Textarea, label="Codigo")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})

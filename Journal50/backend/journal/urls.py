@@ -15,5 +15,7 @@ urlpatterns = [
     path('studyspace/<str:title>/delete/', views.studyspace_delete_view, name='studyspace_delete'),
 
     #URLs de note
+    path('note/<str:studyspace>/create/', views.note_create_view, name='note_create'),
+
     path('note/<str:studyspace>/<str:title>/', views.note_detail_view, name='note_detail'),
 ]   

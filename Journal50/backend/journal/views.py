@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import CustomUserCreationForm, StudyspaceForm
+from .forms import CustomUserCreationForm, StudyspaceForm, NoteForm
 from django.contrib import messages
 from django.urls import reverse
 from .utils import build_note_dict
+
 
 def home_view(request):
     return render(request, 'home.html')
@@ -147,6 +148,23 @@ def note_detail_view(request, title, studyspace):
 
     return redirect("studyspace_list")
 
+
+def note_create_view(request, studyspace):
+
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            notes.update(
+                build_note_dict(form.cleaned_data, studyspace)
+            )
+            print(notes)
+            return redirect(reverse("note_detail", kwargs={
+                "studyspace": studyspace,
+                "title": form.cleaned_data["title"],
+            }))
+    return render(request, "note_create.html", {
+        "form": NoteForm(),
+    })
 
 #nuestro dic para los studyspaces, las keys son los titulos de cada studyspace, y los valores, 
 # son otro dic que contiene toda la data.
