@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm, StudyspaceForm
 from django.contrib import messages
 from django.urls import reverse
-
+from .utils import build_note_dict
 
 def home_view(request):
     return render(request, 'home.html')
