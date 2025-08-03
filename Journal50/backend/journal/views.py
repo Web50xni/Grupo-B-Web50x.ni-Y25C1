@@ -5,7 +5,7 @@ from .forms import CustomUserCreationForm, StudyspaceForm, NoteForm
 from django.contrib import messages
 from django.urls import reverse
 from .utils import build_note_dict
-
+from .models import Studyspaces
 
 def home_view(request):
     return render(request, 'home.html')
@@ -46,7 +46,7 @@ def logout_view(request):
 
 def studyspace_list_view(request):
     return render(request, "studyspace_list.html", {
-        "studyspaces":studyspaces.keys()
+        "studyspaces": Studyspaces.objects.all()
     })
 
 
@@ -172,7 +172,7 @@ studyspaces = {
     "Django": {
         "title": "Django",
         "description": "Este es mi espacio de estudio para Django.",
-        "goal": "Aprender Django para crear páginas dinámicas.",
+        "goal": "Aprender Django para crear páginas dinámicas.",    
     },
 }
 
