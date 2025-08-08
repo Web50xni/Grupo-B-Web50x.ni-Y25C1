@@ -73,8 +73,6 @@ class StudyspacesDetailView(DetailView):
      context_object_name = 'studyspaces'
 
 
-
-
 class StudyspacesShareView(LoginRequiredMixin, UpdateView):
     model = Studyspaces
     template_name = 'studyspaces/share.html'
