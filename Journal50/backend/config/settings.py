@@ -126,3 +126,8 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates']
+
+
+from django.urls import reverse_lazy
+
+LOGIN_URL = reverse_lazy('login')

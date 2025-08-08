@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, StudyspaceShareForm
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from .utils import build_note_dict
 from .models import Studyspaces, Notes
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def home_view(request):
     return render(request, 'home.html')
@@ -45,17 +46,27 @@ def logout_view(request):
     return render(request, 'auth/logout.html')
 
 
-class StudyspacesCreateView(CreateView):
+class StudyspacesCreateView(LoginRequiredMixin, CreateView):
     model = Studyspaces
     template_name = 'studyspaces/create.html'
     fields = ['title', 'description', 'goal']
     success_url = reverse_lazy('studyspaces_list')
 
-class StudyspacesListView(ListView):
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+
+class StudyspacesListView(LoginRequiredMixin, ListView):
     model = Studyspaces
     template_name = 'studyspaces/list.html'
     context_object_name = 'studyspaces'
 
+    def get_queryset(self):
+
+        return Studyspaces.objects.filter(owner=self.request.user)
+
+    
 class StudyspacesDetailView(DetailView):
      model = Studyspaces
      template_name = 'studyspaces/detail.html'
@@ -64,8 +75,21 @@ class StudyspacesDetailView(DetailView):
 
 
 
+class StudyspacesShareView(LoginRequiredMixin, UpdateView):
+    model = Studyspaces
+    template_name = 'studyspaces/share.html'
+    form_class = StudyspaceShareForm
 
 
+
+class StudyspacesSharedListView(LoginRequiredMixin, ListView):
+    model = Studyspaces
+    template_name = 'studyspaces/list.html'
+    context_object_name = 'studyspaces'
+
+    def get_queryset(self):
+
+        return Studyspaces.objects.filter(users=self.request.user)
 
 
 

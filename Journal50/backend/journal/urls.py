@@ -10,6 +10,6 @@ urlpatterns = [
     path('studyspace/list/', views.StudyspacesListView.as_view(), name='studyspaces_list'),
     path('studyspace/create/', views.StudyspacesCreateView.as_view(), name='studyspace_create'),
     path('studyspace/<int:pk>/', views.StudyspacesDetailView.as_view(), name='studyspace_detail'),
-
-   
+    path('studyspace/<int:pk>/share/', views.StudyspacesShareView.as_view(), name='studyspace_share'),
+    path('studyspace/list/shared/', views.StudyspacesSharedListView.as_view(), name='studyspaces_list_share'),
 ]   

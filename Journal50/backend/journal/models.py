@@ -10,6 +10,11 @@ class Studyspaces(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    owner = models.ForeignKey(User, related_name='studyspaces', on_delete=models.CASCADE)
+
+
+    users = models.ManyToManyField(User, related_name='shared_studyspaces')
+
     def __str__(self):
         return f"{self.title}"
 

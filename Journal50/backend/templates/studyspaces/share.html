@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Compartir tu Studyspace</h2>
+
+    <form method='post'>
+        {%csrf_token%}
+        {{ form.as_p }}
+        <button type='submit'>Compartir</button>
+    </form>
+{% endblock %}
