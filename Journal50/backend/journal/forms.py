@@ -9,14 +9,22 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+
+
+
+
+
+
+        
+'''
     #Usamos el constructor para personalizar nuestro formulario, en este caso, agregando clases de bootstrap
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
 
-
-class StudyspaceForm(forms.Form):
+'''
+'''class StudyspaceForm(forms.Form):
     title = forms.CharField(required=True, label="Título")
     #widget nos permite modificar como se mostrara el CharField, en este caso, como un textarea
     description = forms.CharField(required=False, label="Descripción", widget=forms.Textarea)
@@ -41,3 +49,4 @@ class NoteForm(forms.Form):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
+            '''

@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import CustomUserCreationForm, StudyspaceForm, NoteForm
+from .forms import CustomUserCreationForm
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .utils import build_note_dict
-from .models import Studyspaces
+from .models import Studyspaces, Notes
+from django.views.generic import ListView, CreateView, DetailView
 
 def home_view(request):
     return render(request, 'home.html')
@@ -44,6 +45,41 @@ def logout_view(request):
     return render(request, 'auth/logout.html')
 
 
+class StudyspacesCreateView(CreateView):
+    model = Studyspaces
+    template_name = 'studyspaces/create.html'
+    fields = ['title', 'description', 'goal']
+    success_url = reverse_lazy('studyspaces_list')
+
+class StudyspacesListView(ListView):
+    model = Studyspaces
+    template_name = 'studyspaces/list.html'
+    context_object_name = 'studyspaces'
+
+class StudyspacesDetailView(DetailView):
+     model = Studyspaces
+     template_name = 'studyspaces/detail.html'
+     context_object_name = 'studyspaces'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 def studyspace_list_view(request):
     return render(request, "studyspace_list.html", {
         "studyspaces": Studyspaces.objects.all()
@@ -188,4 +224,5 @@ notes = {
         },
         "created_at": "18/07/25",
     }
-}
+}'''
+

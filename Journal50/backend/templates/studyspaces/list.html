@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2> Lista de tus Studyspaces</h2>
+
+<ul>
+    {% for spaces in studyspaces %}
+    <li> 
+        <a href= " {% url 'studyspace_detail' spaces.id %}" > {{ spaces.title }} </a>
+    </li>
+</ul> 
+    
+   {% endfor %} 
+
+{% endblock %}   
