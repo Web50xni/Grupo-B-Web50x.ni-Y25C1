@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const task = document.querySelector('#task').value;
+                const li = document.createElement('li');
+                li.className = 'tarea';
+                li.textContent = task;
+                document.querySelector('ul').appendChild(li);
+                
+                document.querySelectorAll('.tarea').forEach(
+                    tarea => {
+                        tarea.addEventListener('click', () => {
+                            tarea.style.color = 'red';
+                        })
+                    }
+                )
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <h1>Todo</h1>
+    <form>
+        <input id="task" placeholder="task" type="text" required/>
+        <input type="submit" />
+    </form>
+    <ul>
+    </ul>
+    
+</body>
+</html>

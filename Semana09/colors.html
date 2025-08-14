@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const rojo = document.querySelector('#rojo');
+            const azul = document.querySelector('#azul');
+            const verde = document.querySelector('#verde');
+            rojo.addEventListener('click', () => {
+                rojo.style.background = 'red';
+                rojo.style.borderRadius = '12px';
+            });
+            azul.addEventListener('mouseover', () => {
+                azul.style.background = 'blue';
+                azul.style.width = '100px';
+            });
+            verde.style.background = 'green';
+        })
+    </script>
+</head>
+<body>
+    <h1>Colors</h1>
+    <button id="rojo">Rojo</button>
+    <button id="azul">Azul</button>
+    <button id="verde">verde</button>
+</body>
+</html>
