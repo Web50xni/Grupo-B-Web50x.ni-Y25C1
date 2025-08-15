@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatitos</title>
+    <script>
+        //endpoint: https://api.thecatapi.com/v1/images/search?limit=10
+        const URL = "https://api.thecatapi.com/v1/images/search?limit=10";
+
+        async function gatos() 
+        {
+            const response = await fetch(URL);
+            if (response.ok)
+            {
+                const gatos = await response.json();
+                console.log(gatos);
+                const galeria = document.querySelector('#galeria');
+                gatos.forEach(gato => {
+                    const picture = document.createElement('img');
+                    picture.src = gato.url;
+                    galeria.appendChild(picture);
+                });
+            }
+            else 
+            {
+                console.error('Error con la api');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector('button').onclick = gatos();
+        })
+    </script>
+</head>
+<body>
+    <h1>Api de gatitos</h1>
+    <button>Ver gatos</button>
+    <div id="galeria">
+
+    </div>
+</body>
+</html>
